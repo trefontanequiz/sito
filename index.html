@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -16,30 +17,15 @@
         }
         .container {
             text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .input-container {
-            position: relative;
-            display: inline-block;
-        }
-        input[type="password"], input[type="text"] {
+        input[type="password"] {
             padding: 10px;
+            margin-right: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             width: 100%;
             max-width: 300px;
             box-sizing: border-box;
-        }
-        .toggle-visibility {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            user-select: none;
         }
         button {
             padding: 10px 20px;
@@ -49,7 +35,7 @@
             color: white;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 10px;
+            margin-top: 10px; /* Aggiunto margine superiore */
         }
         button:hover {
             background-color: #0056b3;
@@ -59,44 +45,43 @@
             margin-top: 10px;
             display: none;
         }
+        #hint {
+            color: black; /* Colore nero */
+            margin-top: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="input-container">
-            <input type="password" id="password" placeholder="Inserisci la password" oninput="hideError()">
-            <img class="toggle-visibility" src="file:///C:/Users/giaco/Desktop/Sito%20web%20trefquiz/view.png" onclick="togglePasswordVisibility()" alt="Mostra/Nascondi password">
-        </div>
+        <p id="hint">Se sei bloccato, acquista 1 spilla e avrai una dritta!</p> <!-- Spostato sopra -->
+        <input type="password" id="password" placeholder="Inserisci la password" oninput="hideError()">
         <button onclick="checkPassword()">Invio</button>
         <p id="error">Password errata</p>
     </div>
 
     <script>
+        var attempts = 0;
+
         function checkPassword() {
             var password = document.getElementById('password').value;
             var error = document.getElementById('error');
+            var hint = document.getElementById('hint');
+
             if (password === '123456') {
                 window.location.href = 'https://www.youtube.com/channel/UCf1f1A3QwQcgSNHEex7SWkg';
             } else {
                 error.style.display = 'block';
+                attempts++;
+                if (attempts >= 2) {
+                    hint.style.display = 'block';
+                }
             }
         }
 
         function hideError() {
             var error = document.getElementById('error');
             error.style.display = 'none';
-        }
-
-        function togglePasswordVisibility() {
-            var passwordField = document.getElementById('password');
-            var toggleIcon = document.querySelector('.toggle-visibility');
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.src = 'file:///C:/Users/giaco/Desktop/Sito%20web%20trefquiz/hyde.png';
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.src = 'file:///C:/Users/giaco/Desktop/Sito%20web%20trefquiz/view.png';
-            }
         }
     </script>
 </body>
