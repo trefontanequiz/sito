@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifica Password</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-container {
+            position: relative;
+            display: inline-block;
+        }
+        input[type="password"], input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        .toggle-visibility {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #error {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-container">
+            <input type="password" id="password" placeholder="Inserisci la password" oninput="hideError()">
+            <img class="toggle-visibility" src="file:///C:/Users/giaco/Desktop/Sito%20web%20trefquiz/view.png" onclick="togglePasswordVisibility()" alt="Mostra/Nascondi password">
+        </div>
+        <button onclick="checkPassword()">Invio</button>
+        <p id="error">Password errata</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById('password').value;
+            var error = document.getElementById('error');
+            if (password === '123456') {
+                window.location.href = 'https://www.youtube.com/channel/UCf1f1A3QwQcgSNHEex7SWkg';
+            } else {
+                error.style.display = 'block';
+            }
+        }
+
+        function hideError() {
+            var error = document.getElementById('error');
+            error.style.display = 'none';
+        }
+
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById('password');
+            var toggleIcon = document.querySelector('.toggle-visibility');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.src = 'file:///C:/Users/giaco/Desktop/Sito%20web%20trefquiz/hyde.png';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.src = 'file:///C:/Users/giaco/Desktop/Sito%20web%20trefquiz/view.png';
+            }
+        }
+    </script>
+</body>
+</html>
